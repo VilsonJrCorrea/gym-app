@@ -32,7 +32,7 @@ class MemberPage extends React.Component {
       path: "nome",
       label: "Nome",
       content: datum => (
-        <Link to={`/member/${datum._id}`}>
+        <Link to={`/member/view/${datum._id}`}>
           {datum.nome}
         </Link>
       )
