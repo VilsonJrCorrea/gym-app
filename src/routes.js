@@ -4,7 +4,8 @@ import {
   Error404,
   Dashboard,
   Member,
-  FormMember
+  FormMember,
+  ViewMember
 } from './pages';
 // import { isAuthenticated } from './services/auth';
 
@@ -26,7 +27,8 @@ export default () => (
     <Switch>
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/member" component={Member}/>
-      <Route path="/member/:id" component={FormMember}/>
+      <Route exact path="/member/:id" component={FormMember}/>
+      <Route exact path="/member/view/:id" component={ViewMember}/>
       <Route path="*" component={Error404} />
       <Route exact path="/404" component={Error404} />
     </Switch>
