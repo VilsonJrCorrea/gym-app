@@ -27,7 +27,7 @@ export default function getSchema() {
       }),
     dataNascimento: Joi.string()
       .min(6)
-      .max(6)
+      .max(10)
       .required()
       .error(errors => {
         return errors.map(err => {
@@ -37,7 +37,7 @@ export default function getSchema() {
           case "any.empty":
             return { message: vazio };
           case "string.max":
-            return { message: `${maximo} 6` };
+            return { message: `${maximo} 10` };
           default:
             return {};
           }
@@ -135,13 +135,13 @@ export default function getSchema() {
       }),
     uf: Joi.string()
       .required()
-      .min(3)
+      .min(2)
       .max(50)
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
           case "string.min":
-            return { message: `${minimo} 3` };
+            return { message: `${minimo} 2` };
           case "any.empty":
             return { message: vazio };
           case "string.max":
