@@ -52,7 +52,7 @@ class MemberPage extends React.Component {
     {
       key: "update",
       content: datum => (
-        <Link to={`/member/update/${datum._id}`}>
+        <Link to={`/member/${datum._id}`}>
           {<Update/>}
         </Link>
       )
