@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Input from "../../components/common/form/Input";
-import Form from "../../components/common/form/Form";
 import { getMember } from "../../services/memberService";
 import cleanMember from "../../utils/objects/member";
 import getSchema from "../../validators/member";
@@ -16,7 +15,6 @@ class ViewMember extends React.Component {
 
   state:{
     member:cleanMember,
-    mounted:false,
     errors: {}
   };
 
