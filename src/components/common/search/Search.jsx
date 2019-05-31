@@ -5,7 +5,7 @@ import React from "react";
 
 const Search = ({ value, onChange }) => {
   return (
-    <inputf
+    <input
       label="Buscar"
       type="text"
       placeholder="Buscar"
