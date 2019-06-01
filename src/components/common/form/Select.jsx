@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-const Select = ({ label, name, fieldSelect, listOptions, onChange }) => {
-  const nameSelect = name + "_" + fieldSelect;
+const Select = ({ label, name, fieldSelect, listOptions, disabled, onChange }) => {
+  const nameSelect = `${name}_${fieldSelect}`;
   return (
     <div className="container-fluid">
       <div className="row">
@@ -11,9 +11,10 @@ const Select = ({ label, name, fieldSelect, listOptions, onChange }) => {
           id={nameSelect}
           name={nameSelect}
           onChange={onChange}
-          className={"form-control"}
+          className="form-control"
+          disabled={disabled}
         >
-          <option value="" />
+          {/* <option value="" /> */}
           {listOptions.map(item => (
             <option key={item} value={item}>
               {item}

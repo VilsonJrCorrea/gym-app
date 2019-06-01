@@ -1,8 +1,4 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from "react";
-// import TableBody from "@material-ui/core/TableBody";
-// import TableCell from "@material-ui/core/TableCell";
-// import TableRow from "@material-ui/core/TableRow";
 import _ from "lodash";
 
 class CustomTableBody extends Component {
@@ -11,8 +7,8 @@ class CustomTableBody extends Component {
     return _.get(datum, column.path);
   };
 
-  createKey = (datum, column) => {
-    return datum._id + (column.path || column.key);
+  createKey = (datum, column, index) => {
+    return datum._id + (column.path || column.key) + index;
   };
 
   render() {
@@ -21,8 +17,8 @@ class CustomTableBody extends Component {
       <tbody>
         {data.map(datum => (
           <tr key={datum._id}>
-            {columns.map(column => (
-              <td key={this.createKey(datum, column)} align="left">
+            {columns.map((column, index) => (
+              <td key={this.createKey(datum, column, index)} align="left">
                 {this.renderCell(datum, column)}
               </td>
             ))}

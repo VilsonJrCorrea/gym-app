@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable react/prop-types */
 import React from "react";
+import Container from "react-bootstrap/Container";
 
 const SelectAndInput = ({
   label,
@@ -7,21 +9,23 @@ const SelectAndInput = ({
   fieldSelect,
   fieldDesc,
   listOptions,
-  onChange
+  onChange,
+  disabled
 }) => {
-  const nameSelect = name + "_" + fieldSelect;
-  const nameDesc = name + "_" + fieldDesc;
+  const nameSelect = `${name  }_${  fieldSelect}`;
+  const nameDesc = `${name  }_${  fieldDesc}`;
   return (
-    <div className="container col-0">
+    <div style={{ paddingTop: "20px" }} className="col col-12">
       <div className="row">
         <label htmlFor={nameSelect}>{label}</label>
         <select
           id={nameSelect}
           name={nameSelect}
           onChange={onChange}
-          className={"form-control"}
+          className="form-control"
+          disabled={disabled}
         >
-          <option value="" />
+          {/* <option value="" /> */}
           {listOptions.map(item => (
             <option key={item} value={item}>
               {item}
@@ -30,15 +34,17 @@ const SelectAndInput = ({
         </select>
       </div>
       <div className="row">
-        <label htmlFor={nameDesc}>{"Descrição"}</label>
+        <label htmlFor={nameDesc}>Descrição</label>
         <input
           name={nameDesc}
           id={nameDesc}
           onChange={onChange}
           className="form-control"
+          disabled={disabled}
         />
       </div>
     </div>
+
   );
 };
 export default SelectAndInput;

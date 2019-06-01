@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
@@ -5,14 +6,20 @@ import React from "react";
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import Joi from "joi-browser";
+import _ from "lodash";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Input from "../../components/common/form/Input";
 import { getMember, saveMember } from "../../services/memberService";
 import cleanMember from "../../utils/objects/member";
 import getSchema from "../../validators/member";
 import Dashboard from '../../components/Layout/Dashboard';
+import PersonalQuiz from "../../components/Member/PersonalQuiz";
+import GeneralQuiz from "../../components/Member/GeneralQuiz";
+import Payment from "../../components/Member/Payment";
+import Activity from "../../components/Member/Activity";
+import SubmitButton from "../../components/common/buttons/SubmitButton";
+import cleanActivity from "../../utils/objects/atividade";
+import cleanPayment from "../../utils/objects/mensalidade";
 
 class FormMember extends React.Component {
   schema = getSchema();
@@ -29,7 +36,7 @@ class FormMember extends React.Component {
       if (status === 200) {
         toast.success("Salvo com sucesso!");
         this.props.history.push("/member");
-      }else{
+      } else {
         toast.error("Erro ao salvar!");
       }
     } catch (e) {
@@ -48,7 +55,59 @@ class FormMember extends React.Component {
     else delete errors[input.name];
     const { member } = { ...this.state.data };
     member[input.name] = input.value;
+    // eslint-disable-next-line react/no-unused-state
     this.setState({ member, errors });
+  };
+
+  handleChangeQuestionario = ({ currentTarget: input }) => {
+    const [section, field] = input.name.split("_");
+    const objectSection = this.state.data.member.questionario[section];
+    objectSection[field] = input.value;
+    // eslint-disable-next-line react/no-unused-state
+    this.setState({ objectSection });
+  };
+
+  handleChangeListOfObjects = ({ currentTarget: input }) => {
+    const [section, field, index] = input.name.split("_");
+    const { [section]: objectSection } = this.state.data.member;
+    const obj = objectSection[index];
+    obj[field] = input.value;
+    objectSection[index] = obj;
+    this.setState({ section: objectSection });
+  };
+
+  handleNewItemOnListPayment = e => {
+    e.preventDefault();
+    const { currentTarget } = e;
+    const field = currentTarget.name;
+    const { [field]: d } = { ...this.state.data.member };
+    const { member } = { ...this.state.data };
+    const auxCleanPayment = _.cloneDeep(cleanPayment);
+    member[field] = _.concat(d, auxCleanPayment);
+    this.setState({ member });
+  };
+
+  handleNewItemOnListActivity = e => {
+    e.preventDefault();
+    const { currentTarget } = e;
+    const field = currentTarget.name;
+    const { [field]: d } = { ...this.state.data.member };
+    const { member } = { ...this.state.data };
+    const auxCleanActivity = _.cloneDeep(cleanActivity);
+    member[field] = _.concat(d, auxCleanActivity);
+    this.setState({ member });
+  };
+
+  handleDeleteActivity = e => {
+    e.preventDefault();
+    const { currentTarget } = e;
+    const field = currentTarget.name;
+    const { atividades } = { ...this.state.data.member };
+    const p = _.remove(atividades, (n, i) => {
+      // eslint-disable-next-line eqeqeq
+      return i == field;
+    });
+    this.setState({ p });
   };
 
   validateProperty = ({ name, value }) => {
@@ -61,9 +120,6 @@ class FormMember extends React.Component {
   validateForm = () => {
     const options = { abortEarly: false };
     const { member } = { ...this.state.data };
-    delete member.questionario;
-    delete member.atividades;
-    delete member.mensalidades;
     const { error } = Joi.validate(member, this.schema, options);
     if (!error) return null;
     const errors = {};
@@ -77,6 +133,7 @@ class FormMember extends React.Component {
       if (id === 'new') {
         this.setState({ data: { member: cleanMember }, errors: {} });
       } else {
+        // eslint-disable-next-line no-shadow
         const { data: saveMember } = await getMember(id);
         this.setState({ data: { member: saveMember }, errors: {} });
       }
@@ -87,65 +144,38 @@ class FormMember extends React.Component {
 
   renderMemberEnabled = () => {
     const { member } = this.state.data;
+    const { mensalidades, atividades } = member;
     const { errors } = this.state;
     return (
       <div>
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form onSubmit={this.handleSubmit}>
-              <Input name="nome" type="text" value={member.nome} error={errors.nome} onChange={this.handleChange} label="Nome" />
-              <Input name="email" type="text" value={member.email} error={errors.email} onChange={this.handleChange} label="E-mail" />
-              <Row>
-                <Col>
-                  <Input name="fone" type="text" value={member.fone} error={errors.fone} onChange={this.handleChange} label="Telefone" />
-                </Col>
-                <Col>
-                  <Input name="celular" type="text" value={member.celular} error={errors.celular} onChange={this.handleChange} label="Celular" />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Input name="dataNascimento" type="text" value={member.dataNascimento} error={errors.dataNascimento}
-                    onChange={this.handleChange}
-                    label="Data nascimento" />
-                </Col>
-                <Col>
-                  <Input name="sexo" type="text" value={member.sexo} error={errors.sexo} onChange={this.handleChange} label="Sexo" />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Input name="cidade" type="text" value={member.cidade} error={errors.cidade} onChange={this.handleChange} label="Cidade" />
-                </Col>
-                <Col>
-                  <Input name="uf" type="text" value={member.uf} error={errors.uf} onChange={this.handleChange} label="UF" />
-                </Col>
-                <Col>
-                  <Input name="cep" type="text" value={member.cep} error={errors.cep} onChange={this.handleChange} label="CEP" />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Input name="rua" type="text" value={member.rua} error={errors.rua} onChange={this.handleChange} label="Rua" />
-                </Col>
-                <Col>
-                  <Input name="numero" type="text" value={member.numero} error={errors.numero} onChange={this.handleChange} label="Número" />
-                </Col>
-                <Col>
-                  <Input name="bairro" type="text" value={member.bairro} error={errors.bairro} onChange={this.handleChange} label="Bairro" />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <button
-                    disabled={this.validateForm()}
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    Registrar
-                  </button>
-                </Col>
-              </Row>
+              <PersonalQuiz
+                onChange={this.handleChange}
+                data={member}
+                errors={errors}
+              />
+              <GeneralQuiz
+                onChange={this.handleChangeQuestionario}
+              />
+              <Payment
+                onChangeListOfObjects={this.handleChangeListOfObjects}
+                data={mensalidades}
+                onNew={this.handleNewItemOnListPayment}
+                renderInputs
+              />
+              <Activity
+                onChangeListOfObjects={this.handleChangeListOfObjects}
+                data={atividades}
+                onNew={this.handleNewItemOnListActivity}
+                onDelete={this.handleDeleteActivity}
+                renderInputs
+              />
+              <SubmitButton
+                onValidate={this.validateForm}
+              />
+
             </form>
           </Card.Body>
         </Col>

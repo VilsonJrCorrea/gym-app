@@ -211,6 +211,9 @@ export default function getSchema() {
       }),
     _id: Joi.string(),
     codigoAluno: Joi.string(),
+    atividades: Joi.any(),
+    questionario: Joi.any(),
+    mensalidades: Joi.any(),
     __v: Joi.number()
   };
 }
