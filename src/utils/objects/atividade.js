@@ -1,8 +1,8 @@
 export default [
   {
-    descricao: "",
-    diaSemana: "",
-    repeticoes: "",
-    serie: ""
+    descricao: '',
+    diaSemana: '',
+    repeticoes: '',
+    serie: ''
   }
 ];

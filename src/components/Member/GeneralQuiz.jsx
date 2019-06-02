@@ -1,25 +1,19 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import SelectAndInput from "../common/form/SelectAndInput";
-import ListSelect from "../common/form/ListSelect";
+import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import SelectAndInput from '../common/form/SelectAndInput';
+import ListSelect from '../common/form/ListSelect';
+import { motivos, comoConheceu, naoSim } from '../../utils/constants/questionario';
 
-import {
-  motivos,
-  comoConheceu,
-  naoSim
-} from "../../utils/constants/questionario";
-
-const GeneralQuiz = ({
-  onChange,
-  disabled
-}) => {
+const GeneralQuiz = ({ onChange, disabled }) => {
   return (
     <Container className="container-fluid" style={{ paddingTop: '50px' }}>
       <Row>
-        <Col><h3>Questionário</h3></Col>
+        <Col>
+          <h3>Questionário</h3>
+        </Col>
       </Row>
       <Container>
         <Row>
@@ -63,7 +57,7 @@ const GeneralQuiz = ({
         onChange={onChange}
         disabled={disabled}
       />
-    </Container >
+    </Container>
   );
 };
 export default GeneralQuiz;

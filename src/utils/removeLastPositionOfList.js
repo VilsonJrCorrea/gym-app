@@ -1,6 +1,6 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-export default function (list) {
+export default function(list) {
   const dataWithoutLastPosition = _.cloneDeep(list);
   if (dataWithoutLastPosition.length > 1) {
     const lastPosition = dataWithoutLastPosition.length - 1;

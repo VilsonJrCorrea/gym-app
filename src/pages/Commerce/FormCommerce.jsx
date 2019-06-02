@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-access-state-in-setstate */
@@ -9,19 +10,16 @@ import Joi from 'joi-browser';
 import _ from 'lodash';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import { getMember, saveMember } from '../../services/memberService';
-import cleanMember from '../../utils/objects/member';
-import getSchema from '../../validators/member';
+import { getCommerce, saveCommerce } from '../../services/commerceService';
+import cleanProduct from '../../utils/objects/produto';
+import cleanCommerce from '../../utils/objects/comercio';
+import getSchema from '../../validators/commerce';
 import Dashboard from '../../components/Layout/Dashboard';
-import PersonalQuiz from '../../components/Member/PersonalQuiz';
-import GeneralQuiz from '../../components/Member/GeneralQuiz';
-import Payment from '../../components/Member/Payment';
-import Activity from '../../components/Member/Activity';
+import Commerce from '../../components/Commerce/Commerce';
 import SubmitButton from '../../components/common/buttons/SubmitButton';
-import cleanActivity from '../../utils/objects/atividade';
-import cleanPayment from '../../utils/objects/mensalidade';
+import Input from "../../components/common/form/Input";
 
-class FormMember extends React.Component {
+class FormCommerce extends React.Component {
   schema = getSchema();
 
   async componentDidMount() {
@@ -31,11 +29,11 @@ class FormMember extends React.Component {
   handleSubmit = async event => {
     try {
       event.preventDefault();
-      const { member } = this.state.data;
-      const { status } = await saveMember(member);
+      const { commerce } = this.state.data;
+      const { status } = await saveCommerce(commerce);
       if (status === 200) {
         toast.success('Salvo com sucesso!');
-        this.props.history.push('/member');
+        this.props.history.push('/commerce');
       } else {
         toast.error('Erro ao salvar!');
       }
@@ -53,15 +51,15 @@ class FormMember extends React.Component {
     const errorMessage = this.validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
-    const { member } = { ...this.state.data };
-    member[input.name] = input.value;
+    const { commerce } = { ...this.state.data };
+    commerce[input.name] = input.value;
     // eslint-disable-next-line react/no-unused-state
-    this.setState({ member, errors });
+    this.setState({ commerce, errors });
   };
 
   handleChangeQuestionario = ({ currentTarget: input }) => {
     const [section, field] = input.name.split('_');
-    const objectSection = this.state.data.member.questionario[section];
+    const objectSection = this.state.data.commerce.questionario[section];
     objectSection[field] = input.value;
     // eslint-disable-next-line react/no-unused-state
     this.setState({ objectSection });
@@ -69,41 +67,30 @@ class FormMember extends React.Component {
 
   handleChangeListOfObjects = ({ currentTarget: input }) => {
     const [section, field, index] = input.name.split('_');
-    const { [section]: objectSection } = this.state.data.member;
+    const { [section]: objectSection } = this.state.data.commerce;
     const obj = objectSection[index];
     obj[field] = input.value;
     objectSection[index] = obj;
     this.setState({ section: objectSection });
   };
 
-  handleNewItemOnListPayment = e => {
+  handleNewItemOnListProduct = e => {
     e.preventDefault();
     const { currentTarget } = e;
     const field = currentTarget.name;
-    const { [field]: d } = { ...this.state.data.member };
-    const { member } = { ...this.state.data };
-    const auxCleanPayment = _.cloneDeep(cleanPayment);
-    member[field] = _.concat(d, auxCleanPayment);
-    this.setState({ member });
+    const { [field]: d } = { ...this.state.data.commerce };
+    const { commerce } = { ...this.state.data };
+    const auxCleanProduct = _.cloneDeep(cleanProduct);
+    commerce[field] = _.concat(d, auxCleanProduct);
+    this.setState({ commerce });
   };
 
-  handleNewItemOnListActivity = e => {
+  handleDeleteProduct = e => {
     e.preventDefault();
     const { currentTarget } = e;
     const field = currentTarget.name;
-    const { [field]: d } = { ...this.state.data.member };
-    const { member } = { ...this.state.data };
-    const auxCleanActivity = _.cloneDeep(cleanActivity);
-    member[field] = _.concat(d, auxCleanActivity);
-    this.setState({ member });
-  };
-
-  handleDeleteActivity = e => {
-    e.preventDefault();
-    const { currentTarget } = e;
-    const field = currentTarget.name;
-    const { atividades } = { ...this.state.data.member };
-    const p = _.remove(atividades, (n, i) => {
+    const { produtos } = { ...this.state.data.commerce };
+    const p = _.remove(produtos, (n, i) => {
       // eslint-disable-next-line eqeqeq
       return i == field;
     });
@@ -119,8 +106,8 @@ class FormMember extends React.Component {
 
   validateForm = () => {
     const options = { abortEarly: false };
-    const { member } = { ...this.state.data };
-    const { error } = Joi.validate(member, this.schema, options);
+    const { commerce } = { ...this.state.data };
+    const { error } = Joi.validate(commerce, this.schema, options);
     if (!error) return null;
     const errors = {};
     for (const item of error.details) errors[item.path[0]] = item.message;
@@ -131,39 +118,39 @@ class FormMember extends React.Component {
     try {
       const { id } = this.props.match.params;
       if (id === 'new') {
-        this.setState({ data: { member: cleanMember }, errors: {} });
+        const auxCleanCommerce = _.cloneDeep(cleanCommerce);
+        this.setState({ data: { commerce: auxCleanCommerce }, errors: {} });
       } else {
-        // eslint-disable-next-line no-shadow
-        const { data: saveMember } = await getMember(id);
-        this.setState({ data: { member: saveMember }, errors: {} });
+        const { data: saveCommerce } = await getCommerce(id);
+        this.setState({ data: { commerce: saveCommerce }, errors: {} });
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  renderMemberEnabled = () => {
-    const { member } = this.state.data;
-    const { mensalidades, atividades } = member;
+  renderCommerceEnabled = () => {
+    const { commerce } = this.state.data;
+    const { produtos } = commerce;
     const { errors } = this.state;
     return (
       <div>
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form onSubmit={this.handleSubmit}>
-              <PersonalQuiz onChange={this.handleChange} data={member} errors={errors} />
-              <GeneralQuiz onChange={this.handleChangeQuestionario} />
-              <Payment
-                onChangeListOfObjects={this.handleChangeListOfObjects}
-                data={mensalidades}
-                onNew={this.handleNewItemOnListPayment}
-                renderInputs
+              <Input
+                name="nome"
+                type="text"
+                value={commerce.nome}
+                label="Nome"
+                error={errors.nome}
+                onChange={this.handleChange}
               />
-              <Activity
+              <Commerce
                 onChangeListOfObjects={this.handleChangeListOfObjects}
-                data={atividades}
-                onNew={this.handleNewItemOnListActivity}
-                onDelete={this.handleDeleteActivity}
+                data={produtos}
+                onNew={this.handleNewItemOnListProduct}
+                onDelete={this.handleDeleteProduct}
                 renderInputs
               />
               <SubmitButton onValidate={this.validateForm} />
@@ -176,10 +163,10 @@ class FormMember extends React.Component {
 
   render() {
     return (
-      <Dashboard title="Dados aluno">
-        {this.state !== null ? this.renderMemberEnabled() : <Spinner animation="border" variant="primary" />}
+      <Dashboard title="Dados comércio">
+        {this.state !== null ? this.renderCommerceEnabled() : <Spinner animation="border" variant="primary" />}
       </Dashboard>
     );
   }
 }
-export default FormMember;
+export default FormCommerce;

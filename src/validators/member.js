@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import Joi from "joi-browser";
+import Joi from 'joi-browser';
 
-const minimo = "O minimo é ";
-const maximo = " O máximo é ";
-const vazio = "Não pode ser vazio";
+const minimo = 'O minimo é ';
+const maximo = ' O máximo é ';
+const vazio = 'Não pode ser vazio';
 
 export default function getSchema() {
   return {
@@ -14,14 +14,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 5` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 5` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
@@ -32,14 +32,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 6` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 10` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 6` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 10` };
+            default:
+              return {};
           }
         });
       }),
@@ -50,14 +50,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 8` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 9` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 8` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 9` };
+            default:
+              return {};
           }
         });
       }),
@@ -68,14 +68,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 8` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 10` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 8` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 10` };
+            default:
+              return {};
           }
         });
       }),
@@ -86,14 +86,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 9` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 12` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 9` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 12` };
+            default:
+              return {};
           }
         });
       }),
@@ -104,14 +104,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 8` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 8` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
@@ -122,14 +122,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 3` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 3` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
@@ -140,14 +140,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 2` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 2` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
@@ -158,14 +158,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 8` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 8` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 8` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 8` };
+            default:
+              return {};
           }
         });
       }),
@@ -176,21 +176,21 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 3` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 3` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
     numero: Joi.number()
       .required()
       .min(0)
-      .label("Valor invalido"),
+      .label('Valor invalido'),
     bairro: Joi.string()
       .required()
       .min(3)
@@ -198,14 +198,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case "string.min":
-            return { message: `${minimo} 3` };
-          case "any.empty":
-            return { message: vazio };
-          case "string.max":
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 3` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),

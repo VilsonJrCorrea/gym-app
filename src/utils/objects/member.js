@@ -1,60 +1,60 @@
 export default {
-  nome: "",
-  dataNascimento: "",
-  sexo: "",
-  fone: "",
-  celular: "",
-  email: "",
-  cidade: "",
-  uf: "",
-  cep: "",
-  rua: "",
-  numero: "",
-  bairro: "",
+  nome: '',
+  dataNascimento: '',
+  sexo: '',
+  fone: '',
+  celular: '',
+  email: '',
+  cidade: '',
+  uf: '',
+  cep: '',
+  rua: '',
+  numero: '',
+  bairro: '',
   questionario: {
     planoSaude: {
-      possui: "",
-      descricao: ""
+      possui: '',
+      descricao: ''
     },
     outroEsporte: {
-      pratica: "",
-      descricao: ""
+      pratica: '',
+      descricao: ''
     },
     motivos: {
-      aprenderNadar: "",
-      bronquite: "",
-      coluna: "",
-      obesidade: "",
-      treinar: "",
-      manterForma: "",
-      gestante: "",
-      conselhoMedio: "",
-      outros: ""
+      aprenderNadar: '',
+      bronquite: '',
+      coluna: '',
+      obesidade: '',
+      treinar: '',
+      manterForma: '',
+      gestante: '',
+      conselhoMedio: '',
+      outros: ''
     },
     comoConheceuAcademia: {
-      jornal: "",
-      placa: "",
-      cartaz: "",
-      panfleto: "",
-      amigos: "",
-      outdoor: "",
-      internet: "",
-      passandoEmFrente: ""
+      jornal: '',
+      placa: '',
+      cartaz: '',
+      panfleto: '',
+      amigos: '',
+      outdoor: '',
+      internet: '',
+      passandoEmFrente: ''
     }
   },
   atividades: [
     {
-      descricao: "",
-      diaSemana: "",
-      repeticoes: "",
-      serie: ""
+      descricao: '',
+      diaSemana: '',
+      repeticoes: '',
+      serie: ''
     }
   ],
   mensalidades: [
     {
-      descricao: "",
-      vencimento: "",
-      valor: ""
+      descricao: '',
+      vencimento: '',
+      valor: ''
     }
   ]
 };

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import CustomTableBody from "./CustomTableBody";
-import CustomTableHead from "./CustomTableHead";
+import React from 'react';
+import CustomTableBody from './CustomTableBody';
+import CustomTableHead from './CustomTableHead';
 
 const CustomTable = ({ columns, data, onModalChange, onDelete, onUpdate }) => {
   return (

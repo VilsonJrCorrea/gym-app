@@ -9,7 +9,7 @@ createStore('sidebar', false);
 
 toast.configure({
   position: 'top-right',
-  autoClose: 6000,
+  autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,

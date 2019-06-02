@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import http from "./api";
+import http from './api';
 
-const apiEndpoint = "/alunos";
+const apiEndpoint = '/alunos';
 
 function memberUrl(id) {
   return `${apiEndpoint}/${id}`;
@@ -21,7 +21,7 @@ export function saveMember(member) {
     delete body._id;
     return http.put(memberUrl(member._id), body);
   }
-  return http.post(apiEndpoint, member)
+  return http.post(apiEndpoint, member);
 }
 
 export function deleteMember(memberId) {

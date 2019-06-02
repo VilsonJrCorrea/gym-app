@@ -13,12 +13,12 @@ import Search from '../../components/common/search/Search';
 import Pagination from '../../components/common/pagination/Pagination';
 import paginate from '../../utils/paginate';
 
-import { getMembers, deleteMember } from '../../services/memberService';
+import { getCommerces, deleteCommerce } from '../../services/commerceService';
 import 'bootstrap/dist/css/bootstrap.css';
 
-class MemberPage extends React.Component {
+class Commerce extends React.Component {
   state = {
-    members: [],
+    commerces: [],
     currentPage: 1,
     pageSize: 10,
     searchQuery: '',
@@ -29,37 +29,33 @@ class MemberPage extends React.Component {
     {
       path: 'nome',
       label: 'Nome',
-      content: datum => <Link to={`/member/view/${datum._id}`}>{datum.nome}</Link>
-    },
-    {
-      path: 'celular',
-      label: 'Celular'
+      content: datum => <Link to={`/commerce/view/${datum._id}`}>{datum.nome}</Link>
     },
     {
       key: 'delete',
       content: datum => (
-        <Link to="/member" onClick={() => this.handleDelete(datum)}>
+        <Link to="/commerce" onClick={() => this.handleDelete(datum)}>
           {<Delete />}
         </Link>
       )
     },
     {
       key: 'update',
-      content: datum => <Link to={`/member/${datum._id}`}>{<Update />}</Link>
+      content: datum => <Link to={`/commerce/${datum._id}`}>{<Update />}</Link>
     }
   ];
 
   async componentDidMount() {
-    const { data } = await getMembers();
-    this.setState({ members: data });
+    const { data } = await getCommerces();
+    this.setState({ commerces: data });
   }
 
   getPagedData = () => {
-    const { pageSize, currentPage, sortColumn, searchQuery, members: allMembers } = this.state;
+    const { pageSize, currentPage, sortColumn, searchQuery, commerces: allCommerces } = this.state;
 
-    let filtered = allMembers;
+    let filtered = allCommerces;
     if (searchQuery) {
-      filtered = allMembers.filter(member => member.nome.toLowerCase().startsWith(searchQuery.toLowerCase()));
+      filtered = allCommerces.filter(commerce => commerce.nome.toLowerCase().startsWith(searchQuery.toLowerCase()));
     }
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const alunos = paginate(sorted, currentPage, pageSize);
@@ -76,27 +72,25 @@ class MemberPage extends React.Component {
 
   handleDelete = async aluno => {
     try {
-      await deleteMember(aluno._id);
-      const { members } = this.state;
-      const newMembers = members.filter(a => a._id !== aluno._id);
-      this.setState({ members: newMembers });
+      await deleteCommerce(aluno._id);
+      const { commerces } = this.state;
+      const newCommerces = commerces.filter(a => a._id !== aluno._id);
+      this.setState({ commerces: newCommerces });
       toast.success('Deletado com sucesso!');
     } catch (error) {
-      toast.error('Esse aluno já foi deletado');
-      // eslint-disable-next-line no-console
+      toast.error('Esse comércio já foi deletado');
       console.log(error);
     }
   };
 
   render() {
-    // const count = this.state.members.length;
     const { pageSize, currentPage, searchQuery } = this.state;
-    const { totalCount, data: members } = this.getPagedData();
+    const { totalCount, data: commerces } = this.getPagedData();
     return (
-      <Dashboard title="Alunos">
+      <Dashboard title="Comércios">
         <Row style={{ paddingTop: '25px', paddingBottom: '25px' }}>
           <Col>
-            <Link to="/member/new">
+            <Link to="/commerce/new">
               <Button variant="primary">Novo</Button>
             </Link>
           </Col>
@@ -107,10 +101,9 @@ class MemberPage extends React.Component {
         <Row>
           <CustomTable
             columns={this.columns}
-            onModalChange={this.handleModalOneChange}
             onDelete={this.handleDelete}
             onUpdate={this.handleModalUpdate}
-            data={members}
+            data={commerces}
           />
         </Row>
         <Row>
@@ -126,4 +119,4 @@ class MemberPage extends React.Component {
   }
 }
 
-export default MemberPage;
+export default Commerce;

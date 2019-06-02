@@ -1,7 +1,5 @@
-export default
-{
-  descricao: "",
-  vencimento: "",
-  valor: "",
-}
-;
+export default {
+  descricao: '',
+  vencimento: '',
+  valor: ''
+};

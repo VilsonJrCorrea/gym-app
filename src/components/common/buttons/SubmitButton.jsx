@@ -1,7 +1,7 @@
 import React from 'react';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 const SubmitButton = ({ onValidate }) => {
   return (
@@ -9,11 +9,7 @@ const SubmitButton = ({ onValidate }) => {
       <Container>
         <Row style={{ paddingTop: '50px' }}>
           <Col>
-            <button
-              disabled={onValidate()}
-              type="submit"
-              className="btn btn-primary"
-            >
+            <button disabled={onValidate()} type="submit" className="btn btn-primary">
               Registrar
             </button>
           </Col>

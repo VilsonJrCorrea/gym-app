@@ -13,12 +13,12 @@ import Search from '../../components/common/search/Search';
 import Pagination from '../../components/common/pagination/Pagination';
 import paginate from '../../utils/paginate';
 
-import { getMembers, deleteMember } from '../../services/memberService';
+import { getEquipments, deleteEquipment } from '../../services/equipmentService';
 import 'bootstrap/dist/css/bootstrap.css';
 
-class MemberPage extends React.Component {
+class Equipment extends React.Component {
   state = {
-    members: [],
+    equipments: [],
     currentPage: 1,
     pageSize: 10,
     searchQuery: '',
@@ -29,37 +29,41 @@ class MemberPage extends React.Component {
     {
       path: 'nome',
       label: 'Nome',
-      content: datum => <Link to={`/member/view/${datum._id}`}>{datum.nome}</Link>
+      content: datum => <Link to={`/equipment/view/${datum._id}`}>{datum.nome}</Link>
     },
     {
-      path: 'celular',
-      label: 'Celular'
+      path: 'quantidade',
+      label: 'Quantidade',
+    },
+    {
+      path: 'preco',
+      label: 'Preço',
     },
     {
       key: 'delete',
       content: datum => (
-        <Link to="/member" onClick={() => this.handleDelete(datum)}>
+        <Link to="/equipment" onClick={() => this.handleDelete(datum)}>
           {<Delete />}
         </Link>
       )
     },
     {
       key: 'update',
-      content: datum => <Link to={`/member/${datum._id}`}>{<Update />}</Link>
+      content: datum => <Link to={`/equipment/${datum._id}`}>{<Update />}</Link>
     }
   ];
 
   async componentDidMount() {
-    const { data } = await getMembers();
-    this.setState({ members: data });
+    const { data } = await getEquipments();
+    this.setState({ equipments: data });
   }
 
   getPagedData = () => {
-    const { pageSize, currentPage, sortColumn, searchQuery, members: allMembers } = this.state;
+    const { pageSize, currentPage, sortColumn, searchQuery, equipments: allEquipments } = this.state;
 
-    let filtered = allMembers;
+    let filtered = allEquipments;
     if (searchQuery) {
-      filtered = allMembers.filter(member => member.nome.toLowerCase().startsWith(searchQuery.toLowerCase()));
+      filtered = allEquipments.filter(equipment => equipment.nome.toLowerCase().startsWith(searchQuery.toLowerCase()));
     }
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const alunos = paginate(sorted, currentPage, pageSize);
@@ -76,27 +80,26 @@ class MemberPage extends React.Component {
 
   handleDelete = async aluno => {
     try {
-      await deleteMember(aluno._id);
-      const { members } = this.state;
-      const newMembers = members.filter(a => a._id !== aluno._id);
-      this.setState({ members: newMembers });
+      await deleteEquipment(aluno._id);
+      const { equipments } = this.state;
+      const newEquipments = equipments.filter(a => a._id !== aluno._id);
+      this.setState({ equipments: newEquipments });
       toast.success('Deletado com sucesso!');
     } catch (error) {
-      toast.error('Esse aluno já foi deletado');
-      // eslint-disable-next-line no-console
+      toast.error('Esse equipamento já foi deletado');
       console.log(error);
     }
   };
 
   render() {
-    // const count = this.state.members.length;
+    // const count = this.state.equipments.length;
     const { pageSize, currentPage, searchQuery } = this.state;
-    const { totalCount, data: members } = this.getPagedData();
+    const { totalCount, data: equipments } = this.getPagedData();
     return (
-      <Dashboard title="Alunos">
+      <Dashboard title="Equipamentos">
         <Row style={{ paddingTop: '25px', paddingBottom: '25px' }}>
           <Col>
-            <Link to="/member/new">
+            <Link to="/equipment/new">
               <Button variant="primary">Novo</Button>
             </Link>
           </Col>
@@ -110,7 +113,7 @@ class MemberPage extends React.Component {
             onModalChange={this.handleModalOneChange}
             onDelete={this.handleDelete}
             onUpdate={this.handleModalUpdate}
-            data={members}
+            data={equipments}
           />
         </Row>
         <Row>
@@ -126,4 +129,4 @@ class MemberPage extends React.Component {
   }
 }
 
-export default MemberPage;
+export default Equipment;

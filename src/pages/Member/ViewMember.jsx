@@ -1,22 +1,18 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable prettier/prettier */
-import React from "react";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Spinner from "react-bootstrap/Spinner";
-import Input from "../../components/common/form/Input";
-import { getMember } from "../../services/memberService";
-import cleanMember from "../../utils/objects/member";
-import getSchema from "../../validators/member";
+import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
+import { getMember } from '../../services/memberService';
+import getSchema from '../../validators/member';
 import Dashboard from '../../components/Layout/Dashboard';
-import PersonalQuiz from "../../components/Member/PersonalQuiz";
-import GeneralQuiz from "../../components/Member/GeneralQuiz";
-import Payment from "../../components/Member/Payment";
-import Activity from "../../components/Member/Activity";
+import PersonalQuiz from '../../components/Member/PersonalQuiz';
+import GeneralQuiz from '../../components/Member/GeneralQuiz';
+import Payment from '../../components/Member/Payment';
+import Activity from '../../components/Member/Activity';
 
 class ViewMember extends React.Component {
-
   schema = getSchema();
 
   async componentDidMount() {
@@ -42,35 +38,24 @@ class ViewMember extends React.Component {
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form onSubmit={this.handleSubmit}>
-              <PersonalQuiz
-                data={member}
-                errors={{}}
-                disabled
-              />
-              <GeneralQuiz disabled/>
-              <Payment
-                data={mensalidades}
-                disabled
-              />
-              <Activity
-                data={atividades}
-                disabled
-              />
+              <PersonalQuiz data={member} errors={{}} disabled />
+              <GeneralQuiz disabled />
+              <Payment data={mensalidades} disabled />
+              <Activity data={atividades} disabled />
             </form>
           </Card.Body>
         </Col>
       </div>
     );
-  }
+  };
 
   render() {
     return (
       <Dashboard title="Dados aluno">
-        {this.state ? this.renderMemberDisabled()
-          : <Spinner animation="border" variant="primary" />}
+        {this.state ? this.renderMemberDisabled() : <Spinner animation="border" variant="primary" />}
       </Dashboard>
     );
   }
-};
+}
 
 export default ViewMember;
