@@ -28,7 +28,7 @@ class FormEquipment extends React.Component {
     try {
       event.preventDefault();
       const { equipment } = this.state.data;
-      console.log("************>",this.state.data);
+      console.log('************>', this.state.data);
       const { status } = await saveEquipment(equipment);
       if (status === 200) {
         toast.success('Salvo com sucesso!');
@@ -96,11 +96,7 @@ class FormEquipment extends React.Component {
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form onSubmit={this.handleSubmit}>
-              <Equipment
-                data={equipment}
-                errors={errors}
-                onChange={this.handleChange}
-              />
+              <Equipment data={equipment} errors={errors} onChange={this.handleChange} />
               <SubmitButton onValidate={this.validateForm} />
             </form>
           </Card.Body>

@@ -17,7 +17,7 @@ import getSchema from '../../validators/commerce';
 import Dashboard from '../../components/Layout/Dashboard';
 import Commerce from '../../components/Commerce/Commerce';
 import SubmitButton from '../../components/common/buttons/SubmitButton';
-import Input from "../../components/common/form/Input";
+import Input from '../../components/common/form/Input';
 
 class FormCommerce extends React.Component {
   schema = getSchema();

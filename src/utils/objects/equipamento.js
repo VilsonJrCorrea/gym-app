@@ -1,5 +1,5 @@
 export default {
   nome: '',
-  quantidade:'',
-  preco:''
+  quantidade: '',
+  preco: ''
 };

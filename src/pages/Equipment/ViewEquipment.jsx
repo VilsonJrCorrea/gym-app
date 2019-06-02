@@ -10,7 +10,6 @@ import Dashboard from '../../components/Layout/Dashboard';
 import Equipment from '../../components/Equipment/Equipment';
 
 class ViewEquipment extends React.Component {
-
   async componentDidMount() {
     await this.getDatum();
   }
@@ -33,11 +32,7 @@ class ViewEquipment extends React.Component {
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form>
-              <Equipment
-                data={equipment}
-                disabled
-                errors={{}}
-              />
+              <Equipment data={equipment} disabled errors={{}} />
             </form>
           </Card.Body>
         </Col>

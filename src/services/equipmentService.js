@@ -19,7 +19,7 @@ export function saveEquipment(equipment) {
   if (equipment._id) {
     const body = { ...equipment };
     delete body._id;
-    console.log("oi ",body)
+    console.log('oi ', body);
     return http.put(equipmentUrl(equipment._id), body);
   }
   return http.post(apiEndpoint, equipment);

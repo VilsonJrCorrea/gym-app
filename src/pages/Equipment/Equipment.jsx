@@ -33,11 +33,11 @@ class Equipment extends React.Component {
     },
     {
       path: 'quantidade',
-      label: 'Quantidade',
+      label: 'Quantidade'
     },
     {
       path: 'preco',
-      label: 'Preço',
+      label: 'Preço'
     },
     {
       key: 'delete',

@@ -1,6 +1,6 @@
 export default [
   {
     descricao: '',
-    preco:''
+    preco: ''
   }
 ];

@@ -1,4 +1,4 @@
 export default [
   { object: 'produtos', path: 'descricao', label: 'Descrição' },
-  { object: 'produtos', path: 'preco', label: 'Preço' },
+  { object: 'produtos', path: 'preco', label: 'Preço' }
 ];

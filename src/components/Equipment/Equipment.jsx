@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from "../common/form/Input";
+import Input from '../common/form/Input';
 
-const Equipment=({disabled,data,errors,onChange})=>{
+const Equipment = ({ disabled, data, errors, onChange }) => {
   return (
     <div>
       <Input
@@ -21,14 +21,7 @@ const Equipment=({disabled,data,errors,onChange})=>{
         onChange={onChange}
         label="Quantidade"
       />
-      <Input
-        name="preco"
-        type="text"
-        disabled={disabled}
-        value={data.preco}
-        onChange={onChange}
-        label="Preço"
-      />
+      <Input name="preco" type="text" disabled={disabled} value={data.preco} onChange={onChange} label="Preço" />
     </div>
   );
 };

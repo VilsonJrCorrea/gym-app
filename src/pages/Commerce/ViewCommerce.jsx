@@ -6,11 +6,10 @@ import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
 import { getCommerce } from '../../services/commerceService';
 import Dashboard from '../../components/Layout/Dashboard';
-import Commerce from "../../components/Commerce/Commerce";
-import Input from "../../components/common/form/Input";
+import Commerce from '../../components/Commerce/Commerce';
+import Input from '../../components/common/form/Input';
 
 class ViewCommerce extends React.Component {
-
   async componentDidMount() {
     await this.getDatum();
   }
@@ -34,17 +33,8 @@ class ViewCommerce extends React.Component {
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form>
-              <Input
-                name="nome"
-                type="text"
-                disabled
-                value={commerce.nome}
-                label="Nome"
-              />
-              <Commerce
-                data={produtos}
-                disabled
-              />
+              <Input name="nome" type="text" disabled value={commerce.nome} label="Nome" />
+              <Commerce data={produtos} disabled />
             </form>
           </Card.Body>
         </Col>

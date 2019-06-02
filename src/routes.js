@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Error404,
+import {
+  Error404,
   Dashboard,
   Member,
   FormMember,
@@ -10,7 +11,7 @@ import { Error404,
   ViewCommerce,
   Equipment,
   FormEquipment,
-  ViewEquipment,
+  ViewEquipment
 } from './pages';
 
 export default () => (

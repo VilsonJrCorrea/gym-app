@@ -7,7 +7,7 @@ const vazio = 'Não pode ser vazio';
 
 export default function getSchema() {
   return {
-    _id:Joi.any(),
+    _id: Joi.any(),
     nome: Joi.string()
       .required()
       .min(5)
@@ -15,14 +15,14 @@ export default function getSchema() {
       .error(errors => {
         return errors.map(err => {
           switch (err.type) {
-          case 'string.min':
-            return { message: `${minimo} 5` };
-          case 'any.empty':
-            return { message: vazio };
-          case 'string.max':
-            return { message: `${maximo} 50` };
-          default:
-            return {};
+            case 'string.min':
+              return { message: `${minimo} 5` };
+            case 'any.empty':
+              return { message: vazio };
+            case 'string.max':
+              return { message: `${maximo} 50` };
+            default:
+              return {};
           }
         });
       }),
