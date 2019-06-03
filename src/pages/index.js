@@ -8,6 +8,9 @@ import ViewCommerce from './Commerce/ViewCommerce';
 import Equipment from './Equipment/Equipment';
 import FormEquipment from './Equipment/FormEquipment';
 import ViewEquipment from './Equipment/ViewEquipment';
+import Professional from './Professional/Professional';
+import FormProfessional from './Professional/FormProfessional';
+import ViewProfessional from './Professional/ViewProfessional';
 import Error404 from './Error404/Error404';
 
 export {
@@ -21,5 +24,8 @@ export {
   ViewCommerce,
   Equipment,
   FormEquipment,
-  ViewEquipment
+  ViewEquipment,
+  Professional,
+  FormProfessional,
+  ViewProfessional
 };
