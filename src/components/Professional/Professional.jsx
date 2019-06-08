@@ -8,9 +8,9 @@ import generateId from '../../utils/generateId';
 import removeLastPositionOfList from '../../utils/removeLastPositionOfList';
 import AddListInListButton from '../common/buttons/AddInListButton';
 import CustomTable from '../common/table/CustomTable';
-import PersonalQuiz from "./PersonalQuiz";
+import PersonalQuiz from './PersonalQuiz';
 
-const Professional = ({ data, onChange,onDelete, onNew, renderInputs, onChangeListOfObjects, disabled,errors }) => {
+const Professional = ({ data, onChange, onDelete, onNew, renderInputs, onChangeListOfObjects, disabled, errors }) => {
   let columns = [
     {
       path: 'nome',
@@ -43,23 +43,18 @@ const Professional = ({ data, onChange,onDelete, onNew, renderInputs, onChangeLi
   return (
     <Container className="container-fluid" style={{ paddingTop: '75px' }}>
       <Row>
-        <PersonalQuiz
-          data={data}
-          errors={errors}
-          disabled={disabled}
-          onChange={onChange}
-        />
+        <PersonalQuiz data={data} errors={errors} disabled={disabled} onChange={onChange} />
       </Row>
       <Row>
         <div className="container-fluid col-12" style={{ paddingTop: '50px' }}>
-          {data.alunos.length > 0 ?
-            (<>
-                <Col>
-                  <h3>Alunos orientados pelo profissional</h3>
-                </Col>
-                <CustomTable columns={columns} data={data.alunos}/></>
-            )
-            : null}
+          {data.alunos.length > 0 ? (
+            <>
+              <Col>
+                <h3>Alunos orientados pelo profissional</h3>
+              </Col>
+              <CustomTable columns={columns} data={data.alunos} />
+            </>
+          ) : null}
         </div>
       </Row>
     </Container>

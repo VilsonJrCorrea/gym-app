@@ -63,7 +63,9 @@ class Professional extends React.Component {
 
     let filtered = allProfessionals;
     if (searchQuery) {
-      filtered = allProfessionals.filter(professional => professional.nome.toLowerCase().startsWith(searchQuery.toLowerCase()));
+      filtered = allProfessionals.filter(professional =>
+        professional.nome.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
     }
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const alunos = paginate(sorted, currentPage, pageSize);
@@ -80,16 +82,15 @@ class Professional extends React.Component {
 
   handleDelete = async professional => {
     try {
-      const {status}=await deleteProfessional(professional._id);
-      if(status===200){
+      const { status } = await deleteProfessional(professional._id);
+      if (status === 200) {
         const { professionals } = this.state;
         const newProfessionals = professionals.filter(a => a._id !== professional._id);
         this.setState({ professionals: newProfessionals });
         toast.success('Deletado com sucesso!');
-      }else{
+      } else {
         toast.error('Falha ao deletar');
       }
-
     } catch (error) {
       toast.error('Esse profissional já foi deletado');
       console.log(error);

@@ -14,7 +14,7 @@ import {
   ViewEquipment,
   Professional,
   FormProfessional,
-  ViewProfessional,
+  ViewProfessional
 } from './pages';
 
 export default () => (

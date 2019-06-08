@@ -10,8 +10,8 @@ import CustomTable from '../../components/common/table/CustomTable';
 import Search from '../../components/common/search/Search';
 import Pagination from '../../components/common/pagination/Pagination';
 import paginate from '../../utils/paginate';
-import Connect from "../../components/common/buttons/Connect";
-import Disconnect from "../../components/common/buttons/Disconnect";
+import Connect from '../../components/common/buttons/Connect';
+import Disconnect from '../../components/common/buttons/Disconnect';
 
 import { getMembers } from '../../services/memberService';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -38,12 +38,16 @@ class MemberPage extends React.Component {
     {
       key: 'connect',
       content: datum => (
-        <button className="btn btn-primary" type="submit"
-          onClick={
-            event=>{event.preventDefault();
-              // eslint-disable-next-line react/destructuring-assignment
-              this.props.onConnect(datum)}}>
-          {this.props.onRenderConnect(datum)? <Disconnect/>:<Connect/>}
+        <button
+          className="btn btn-primary"
+          type="submit"
+          onClick={event => {
+            event.preventDefault();
+            // eslint-disable-next-line react/destructuring-assignment
+            this.props.onConnect(datum);
+          }}
+        >
+          {this.props.onRenderConnect(datum) ? <Disconnect /> : <Connect />}
         </button>
       )
     }

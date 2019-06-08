@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { withBaseIcon } from 'react-icons-kit';
-import {checkmark} from 'react-icons-kit/icomoon/checkmark'
+import { checkmark } from 'react-icons-kit/icomoon/checkmark';
 
 const SideIconContainer = withBaseIcon({ size: 20 });
 

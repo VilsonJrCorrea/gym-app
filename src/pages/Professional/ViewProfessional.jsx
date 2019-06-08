@@ -30,11 +30,7 @@ class ViewProfessional extends React.Component {
         <Col md={{ span: 12, offset: 0 }}>
           <Card.Body>
             <form>
-              <Professional
-                data={professional}
-                disabled
-                errors={{}}
-              />
+              <Professional data={professional} disabled errors={{}} />
             </form>
           </Card.Body>
         </Col>

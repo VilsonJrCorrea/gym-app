@@ -58,19 +58,19 @@ class FormProfessional extends React.Component {
     this.setState({ professional, errors });
   };
 
-  handleConnect=async member=>{
-    const {alunos}={...this.state.data.professional};
-    const result =alunos.filter(a => a._id === member._id);
-    if(result.length > 0){
-      const p=_.remove(alunos,(n,i)=>{
-        return n._id===member._id;
-      })
-      this.setState({p});
-    }else{
+  handleConnect = async member => {
+    const { alunos } = { ...this.state.data.professional };
+    const result = alunos.filter(a => a._id === member._id);
+    if (result.length > 0) {
+      const p = _.remove(alunos, (n, i) => {
+        return n._id === member._id;
+      });
+      this.setState({ p });
+    } else {
       alunos.push(member);
-      this.setState({alunos});
+      this.setState({ alunos });
     }
-  }
+  };
 
   handleDeleteMember = e => {
     e.preventDefault();
@@ -84,15 +84,14 @@ class FormProfessional extends React.Component {
     this.setState({ p });
   };
 
-
-  renderButtonConnect=member=>{
-    const {alunos}={...this.state.data.professional};
-    const result =alunos.filter(a => a._id === member._id);
-    if(result.length>0){
+  renderButtonConnect = member => {
+    const { alunos } = { ...this.state.data.professional };
+    const result = alunos.filter(a => a._id === member._id);
+    if (result.length > 0) {
       return result;
     }
     return null;
-  }
+  };
 
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -122,7 +121,6 @@ class FormProfessional extends React.Component {
         const { data: saveProfessional } = await getProfessional(id);
         this.setState({ data: { professional: saveProfessional, members }, errors: {} });
       }
-
     } catch (e) {
       console.log(e);
     }
@@ -142,10 +140,7 @@ class FormProfessional extends React.Component {
                 onChange={this.handleChange}
                 onDelete={this.handleDeleteMember}
               />
-              <MemberOfProfessional
-                onConnect={this.handleConnect}
-                onRenderConnect={this.renderButtonConnect}
-              />
+              <MemberOfProfessional onConnect={this.handleConnect} onRenderConnect={this.renderButtonConnect} />
               <SubmitButton onValidate={this.validateForm} />
             </form>
           </Card.Body>
