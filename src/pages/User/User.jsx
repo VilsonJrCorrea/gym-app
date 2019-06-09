@@ -14,7 +14,8 @@ import Pagination from '../../components/common/pagination/Pagination';
 import paginate from '../../utils/paginate';
 
 import { getUsers, deleteUser } from '../../services/userService';
-import './node_modules/bootstrap/dist/css/bootstrap.css';
+//import './node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class User extends React.Component {
   state = {

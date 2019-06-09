@@ -14,7 +14,10 @@ import {
   ViewEquipment,
   Professional,
   FormProfessional,
-  ViewProfessional
+  ViewProfessional,
+  User,
+  FormUser,
+  ViewUser,
 } from './pages';
 
 export default () => (
@@ -37,6 +40,10 @@ export default () => (
       <Route exact path="/professional" component={Professional} />
       <Route exact path="/professional/:id" component={FormProfessional} />
       <Route exact path="/professional/view/:id" component={ViewProfessional} />
+
+      <Route exact path="/user" component={User} />
+      <Route exact path="/user/:id" component={FormUser} />
+      <Route exact path="/user/view/:id" component={ViewUser} />
 
       <Route path="*" component={Error404} />
       <Route exact path="/404" component={Error404} />

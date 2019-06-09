@@ -11,6 +11,7 @@ import { paragraphLeft } from 'react-icons-kit/icomoon/paragraphLeft';
 import { useStore } from '../../../hooks/useGlobal';
 import { logout } from '../../../services/auth';
 import SidebarMenuItem from './SidebarMenuItem';
+import { flag } from 'react-icons-kit/icomoon';
 
 const List = styled.ul`
   margin-top: 0.8rem;
@@ -32,6 +33,7 @@ export default () => {
       <SidebarMenuItem link="/professional" icon={lifebuoy} title="Profissionais" />
       <SidebarMenuItem link="/commerce" icon={priceTags} title="Comércios" />
       <SidebarMenuItem link="/equipment" icon={fileText} title="Equipamentos" />
+      <SidebarMenuItem link="/user" icon={flag} title="Usuários" />
       <SidebarMenuItem link="/404" icon={exit} title="Página de 404" />
       <SidebarMenuItem onClickHandler={() => logout()} link="" icon={exit} title="Sair" />
     </List>

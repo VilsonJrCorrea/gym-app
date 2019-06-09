@@ -11,6 +11,9 @@ import ViewEquipment from './Equipment/ViewEquipment';
 import Professional from './Professional/Professional';
 import FormProfessional from './Professional/FormProfessional';
 import ViewProfessional from './Professional/ViewProfessional';
+import User from './User/User';
+import FormUser from './User/FormUser';
+import ViewUser from './User/ViewUser';
 import Error404 from './Error404/Error404';
 
 export {
@@ -27,5 +30,8 @@ export {
   ViewEquipment,
   Professional,
   FormProfessional,
-  ViewProfessional
+  ViewProfessional,
+  User,
+  FormUser,
+  ViewUser
 };
