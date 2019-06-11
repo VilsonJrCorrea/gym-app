@@ -13,22 +13,8 @@ const User = ({ disabled, data, errors, onChange }) => {
         onChange={onChange}
         label="Nome"
       />
-      <Input
-        name="login"
-        type="text"
-        disabled={disabled}
-        value={data.login}
-        onChange={onChange}
-        label="Login"
-      />
-      <Input 
-        name="senha" 
-        type="password" 
-        disabled={disabled} 
-        value={data.senha} 
-        onChange={onChange} 
-        label="Senha" 
-      />
+      <Input name="login" type="text" disabled={disabled} value={data.login} onChange={onChange} label="Login" />
+      <Input name="senha" type="password" disabled={disabled} value={data.senha} onChange={onChange} label="Senha" />
     </div>
   );
 };

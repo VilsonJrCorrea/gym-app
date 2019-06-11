@@ -1,5 +1,5 @@
 export default {
-    nome: '',
-    login: '',
-    senha: ''
-  };
+  nome: '',
+  login: '',
+  senha: ''
+};

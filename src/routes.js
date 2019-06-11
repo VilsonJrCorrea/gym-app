@@ -17,7 +17,7 @@ import {
   ViewProfessional,
   User,
   FormUser,
-  ViewUser,
+  ViewUser
 } from './pages';
 
 export default () => (
