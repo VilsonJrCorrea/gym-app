@@ -51,7 +51,7 @@ const Payment = ({ data, onNew, onChangeListOfObjects, renderInputs }) => {
       ) : null}
       <Row>
         <div className="container-fluid col-10" style={{ paddingTop: '50px' }}>
-          {data.length >= 1 ? <CustomTable columns={columns} data={dataWithoutLastPosition} /> : null}
+          {data.length > 1 ? <CustomTable columns={columns} data={dataWithoutLastPosition} /> : null}
         </div>
       </Row>
     </Container>
