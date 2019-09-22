@@ -1,6 +1,3 @@
-# Observatório de Educação Básica
-
-O FrontEnd do Observatório de Educação Básica.
 
 ## Dependências
 
